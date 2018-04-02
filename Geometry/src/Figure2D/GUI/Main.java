@@ -7,8 +7,9 @@ package Figure2D.GUI;
 
 public class Main 
 {
+    public GeometryUI gemotreyUI;
     public static void main(String[] args)
     {
-        new GUI();
+        new GeometryUI();
     }
 }
