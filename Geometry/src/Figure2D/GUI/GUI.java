@@ -7,15 +7,17 @@ package Figure2D.GUI;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.*;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 public class GUI extends Frame
 {   
 /**
  * oggetti grafici
  */
+    private Frame f = new Frame("Geometry 2D");
     private Color black = new Color(0,0,0);
-    private Panel canvas;
+    //private Draww canvas;
     private Choice figure = new Choice();
     private Button pulsante1 = new Button("DRAW");
     private GestBottone s1 = new GestBottone();
@@ -23,26 +25,26 @@ public class GUI extends Frame
     private Label label2 = new Label("Inserisci l'altezza:");
     private Label label3 = new Label("Inserisci la base:");
     private Label label4 = new Label("Inserisci il raggio (solo cerchio):");
-    private TextField txt1 = new TextField();
-    private TextField txt2 = new TextField();
-    private TextField txt3 = new TextField();
+    private TextField txt1 = new TextField("0");
+    private TextField txt2 = new TextField("0");
+    private TextField txt3 = new TextField("0");
     
     public GUI()
     {
 /**
  * creazione layout e dimensionamento finestra
  */
-        this.setLayout(null);
+        f.setLayout(null);
         
-        this.setTitle("Figure Geometriche");
-        this.setSize(1280,720);
-        this.setVisible(true);
+        f.setTitle("Figure Geometriche");
+        f.setSize(1280,720);
+        f.setVisible(true);
         
         
 /**
  * Registriamo gli osservatori sulla finestra
  */
-        this.addWindowListener(new ChiudiWin());
+        f.addWindowListener(new ChiudiWin());
        
         
 /**
@@ -55,8 +57,7 @@ public class GUI extends Frame
         label4.setBounds(825,70,250,25);
     // scroll list
         figure.setBounds(100,100,150,150);  
-        figure.add("");  
-        figure.add("Quadrilateral");  
+        figure.add("Rectangular");  
         figure.add("Circle");  
         figure.add("Triangle");
     // text fied
@@ -67,25 +68,81 @@ public class GUI extends Frame
         pulsante1.setBounds(1100,90,90,45);
         pulsante1.addActionListener(s1);
     //canvas
-        //canvas.setBounds(50, 200, 1175, 500);
+
     // frame
-        this.add(figure);
-        this.add(pulsante1,"DRAW");
-        this.add(txt1);
-        this.add(txt2);
-        this.add(txt3);
-        this.add(label1);
-        this.add(label2);
-        this.add(label3);
-        this.add(label4);
-        //this.add(canvas);
+        f.add(figure);
+        f.add(pulsante1,"DRAW");
+        f.add(txt1);
+        f.add(txt2);
+        f.add(txt3);
+        f.add(label1);
+        f.add(label2);
+        f.add(label3);
+        f.add(label4);
     }
     
+    
+//azione sul bottone   
     class GestBottone implements ActionListener
     {                  
         public void actionPerformed(ActionEvent evt)
         {   
             //disegno della figura
+            String type;
+            int h=0, b=0, i=0;
+            
+            type=figure.getSelectedItem();
+            switch(type)
+            {
+                case "Rectangular":
+                {   
+                    h=Integer.parseInt(txt1.getText());
+                    b=Integer.parseInt(txt2.getText());
+                    
+                    if (h==0 || b==0)
+                    {
+                        JOptionPane.showMessageDialog(null,"Campo altezza o campo base non inseriti");
+                    }
+                    else
+                    {
+                    }
+                }break;
+                
+                case "Circle":
+                {
+                    h=Integer.parseInt(txt3.getText());
+                    b=Integer.parseInt(txt3.getText());
+                    
+                    if (h==0 || b==0)
+                    {
+                        JOptionPane.showMessageDialog(null,"Campo raggio non inserito");
+                    }
+                    else
+                    {
+                    }
+                }break;
+                
+                case "Triangle":
+                {
+                    h=Integer.parseInt(txt1.getText());
+                    b=Integer.parseInt(txt2.getText());
+                    
+                    if (h==0 || b==0)
+                    {
+                        JOptionPane.showMessageDialog(null,"Campo altezza o campo base non inseriti");
+                    }
+                    else
+                    {
+                    }
+                }break;
+            }
         }
     }
+
+ /*   
+//canvas
+    class Draww extends Canvas
+    {
+        
+    }*/
 }
